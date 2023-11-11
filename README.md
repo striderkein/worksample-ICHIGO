@@ -40,8 +40,8 @@ npm run start
 curl -X POST -H "Content-Type: application/json" -d '{"name":"peter.parker"}' localhost:3000/customers
 ```
 
-## How to order
+## How to create order
 
 ```shell
-curl -X POST -H "Content-Type: application/json" -d '{"customerId":"1000","customerName":"peter.parker","orderId":"ABC1234","totalInCents":10,"date":"2022-01-01T00:00:00.000Z"}' localhost:3000/orders
+curl -X POST -H "Content-Type: application/json" -d '{"customerId":"6433kki0aao","totalInCents":10}' localhost:3000/orders
 ```
