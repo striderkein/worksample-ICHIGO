@@ -27,24 +27,11 @@ export default function CustomerInfo() {
   const data = useMemo(
     () => [
       {
-        col1: 'Customer ID',
-        col2: customer.customerId,
-      },
-      {
-        col1: 'Name',
-        col2: customer.name,
-      },
-      {
-        col1: 'Current Rank',
-        col2: customer.currentRank,
-      },
-      {
-        col1: 'Total Spent',
-        col2: customer.totalSpent,
-      },
-      {
-        col1: 'Last Calculation Date',
-        col2: customer.lastCalculationDate,
+        'Customer ID': customer.customerId,
+        'Name': customer.name,
+        'Current Rank': customer.currentRank,
+        'Total Spent': customer.totalSpent,
+        'Last Calculation Date': customer.lastCalculationDate,
       },
     ],
     [customer]
@@ -53,12 +40,24 @@ export default function CustomerInfo() {
   const columns = useMemo(
     () => [
       {
-        Header: 'Property',
-        accessor: 'col1', // accessor is the "key" in the data
+        Header: 'Customer ID',
+        accessor: 'Customer ID',
       },
       {
-        Header: 'Value',
-        accessor: 'col2',
+        Header: 'Name',
+        accessor: 'Name',
+      },
+      {
+        Header: 'Current Rank',
+        accessor: 'Current Rank',
+      },
+      {
+        Header: 'Total Spent',
+        accessor: 'Total Spent',
+      },
+      {
+        Header: 'Last Calculation Date',
+        accessor: 'Last Calculation Date',
       },
     ],
     []
