@@ -21,22 +21,6 @@ db.serialize(() => {
   db.run("CREATE TABLE IF NOT EXISTS customers (customerId TEXT PRIMARY KEY, name TEXT, currentRank TEXT, lastCalculationDate TEXT, totalSpent INT)");
 });
 
-// app.post('/submit', async (req, res) => {
-//   // TODO: implement your API here
-//   // const { username, address, wish } = req.body;
-//   // const url = 'some.url.to.your.webhook';
-//   // const response = await fetch(url, {
-//   //   method: 'POST',
-//   //   body: JSON.stringify({ username, address, wish }),
-//   //   headers: { 'Content-Type': 'application/json' },
-//   // });
-//
-//   // if (!response.ok) {
-//   //   return res.status(500).send({ message: 'something went wrong.' });
-//   // }
-//   return res.status(200).send({ message: 'Request received.' });
-// });
-
 // 顧客を登録するエンドポイント
 app.post('/customers', (req, res) => {
   const { name } = req.body;
@@ -71,7 +55,7 @@ app.post('/orders', (req, res) => {
   return res.json({ message: "Order completed!" });
 });
 
-// TODO: ランクを再計算する
+// TODO: 毎年末にランクを再計算する cron ジョブ的なやつ
 // // recalculateRanks.js
 // const sqlite3 = require('sqlite3').verbose();
 // const db = new sqlite3.Database('./database.db');
