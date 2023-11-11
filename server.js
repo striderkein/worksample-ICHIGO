@@ -17,7 +17,7 @@ app.use(morgan());
 const db = new sqlite3.Database('./database.db');
 
 db.serialize(() => {
-  db.run("CREATE TABLE IF NOT EXISTS orders (customerId TEXT, customerName TEXT, orderId TEXT, totalInCents INT, date TEXT)");
+  db.run("CREATE TABLE IF NOT EXISTS orders (customerId TEXT, orderId TEXT, totalInCents INT, date TEXT)");
   db.run("CREATE TABLE IF NOT EXISTS customers (customerId TEXT PRIMARY KEY, name TEXT, currentRank TEXT, lastCalculationDate TEXT, totalSpent INT)");
 });
 
@@ -35,11 +35,13 @@ app.post('/customers', (req, res) => {
 
 // 注文を完了するエンドポイント
 app.post('/orders', (req, res) => {
-  const { customerId, customerName, orderId, totalInCents, date } = req.body;
+  const { customerId, totalInCents } = req.body;
 
   // 注文をDBに保存
-  const insertOrder = db.prepare("INSERT INTO orders VALUES (?, ?, ?, ?, ?)");
-  insertOrder.run([customerId, customerName, orderId, totalInCents, date]);
+  const insertOrder = db.prepare("INSERT INTO orders VALUES (?, ?, ?, ?)");
+  const orderId = Math.random().toString(32).substring(2);
+  const date = dayjs().format('YYYY-MM-DD');
+  insertOrder.run([customerId, orderId, totalInCents, date]);
 
   // 顧客のランクを再計算
   db.get("SELECT SUM(totalInCents) as totalSpent FROM orders WHERE customerId = ?", [customerId], (err, row) => {
@@ -49,7 +51,7 @@ app.post('/orders', (req, res) => {
     } else if (row.totalSpent >= 100) {
       newRank = '🥈';
     }
-    db.run("INSERT OR REPLACE INTO customers VALUES (?, ?, ?, ?)", [customerId, newRank, date, row.totalSpent]);
+    db.run("UPDATE customers SET currentRank = ?, lastCalculationDate = ?, totalSpent = ? WHERE customerId = ?", [newRank, date, row.totalSpent, customerId]);
   });
 
   return res.json({ message: "Order completed!" });
