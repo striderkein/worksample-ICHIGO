@@ -1,11 +1,12 @@
 import { useEffect, useState, useMemo } from 'react';
+import { Link, useParams } from 'react-router-dom';
 // import { useNavigate } from 'react-router-dom';
 import { useTable } from 'react-table';
 
 export default function CustomerInfo() {
   // const navigate = useNavigate();
   const [customer, setCustomer] = useState({ customerId: '', name: '',  currentRank: '', totalSpent: 0, lastCalculationDate: ''})
-  const customerId = 'oomknl1j1e8' // TODO: いったん固定値
+  const { customerId } = useParams()
 
   useEffect(() => {
     // エンドポイント `/customers` に対して `GET` リクエストを送信する
@@ -99,6 +100,7 @@ export default function CustomerInfo() {
           })}
         </tbody>
       </table>
+      <Link to="/">Back to home</Link>
     </>
   )
 }
