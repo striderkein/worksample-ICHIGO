@@ -9,6 +9,10 @@ export default function UserHome() {
     navigate(`/customer-info/${customerId}`)
   }
 
+  const checkOrder = () => {
+    navigate(`/orders/${customerId}`)
+  }
+
   return (
     <>
       <p>who are you?</p>
@@ -24,6 +28,7 @@ export default function UserHome() {
       <button
         type="button"
         id="check_order"
+        onClick={checkOrder}
         disabled={customerId == null || customerId.length === 0}
       >check_order</button>
     </>

@@ -1,6 +1,5 @@
 import { useEffect, useState, useMemo } from 'react';
 import { Link, useParams } from 'react-router-dom';
-// import { useNavigate } from 'react-router-dom';
 import { useTable } from 'react-table';
 
 import '../styles/style.css';

@@ -1,18 +1,14 @@
 import { useEffect, useState, useMemo } from 'react';
 import { Link, useParams } from 'react-router-dom';
-// import { useNavigate } from 'react-router-dom';
-import { useTable } from 'react-table';
 
 import '../styles/style.css';
 import AwesomeTable from './AwesomeTable';
 
 export default function CustomerInfo() {
-  // const navigate = useNavigate();
   const [customer, setCustomer] = useState({ customerId: '', name: '',  currentRank: '', totalSpent: 0, lastCalculationDate: ''})
   const { customerId } = useParams()
 
   useEffect(() => {
-    // エンドポイント `/customers` に対して `GET` リクエストを送信する
     const fetchCustomers = async () => {
       const response = await fetch(`/customers/${ customerId }`, {
         method: 'GET',
