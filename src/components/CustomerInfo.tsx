@@ -3,6 +3,8 @@ import { Link, useParams } from 'react-router-dom';
 // import { useNavigate } from 'react-router-dom';
 import { useTable } from 'react-table';
 
+import '../styles/style.css';
+
 export default function CustomerInfo() {
   // const navigate = useNavigate();
   const [customer, setCustomer] = useState({ customerId: '', name: '',  currentRank: '', totalSpent: 0, lastCalculationDate: ''})
@@ -74,8 +76,6 @@ export default function CustomerInfo() {
   return (
     <>
       <h1>customer info</h1>
-      {/* <div>{ JSON.stringify(customer, null, 2) }</div> */}
-      {/* <div>{ customer.name }</div> */}
       <table {...getTableProps()} style={{margin: '0 auto'}}>
         <thead>
           {headerGroups.map(headerGroup => (
