@@ -4,6 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import { useTable } from 'react-table';
 
 import '../styles/style.css';
+import AwesomeTable from './AwesomeTable';
 
 export default function CustomerInfo() {
   // const navigate = useNavigate();
@@ -26,79 +27,43 @@ export default function CustomerInfo() {
     fetchCustomers()
   }, [setCustomer, customerId])
 
-  const data = useMemo(
-    () => [
-      {
-        'Customer ID': customer.customerId,
-        'Name': customer.name,
-        'Current Rank': customer.currentRank,
-        'Total Spent': customer.totalSpent,
-        'Last Calculation Date': customer.lastCalculationDate,
-      },
-    ],
-    [customer]
-  )
+  const data = [
+    {
+      'Customer ID': customer.customerId,
+      'Name': customer.name,
+      'Current Rank': customer.currentRank,
+      'Total Spent': customer.totalSpent,
+      'Last Calculation Date': customer.lastCalculationDate,
+    },
+  ]
 
-  const columns = useMemo(
-    () => [
-      {
-        Header: 'Customer ID',
-        accessor: 'Customer ID',
-      },
-      {
-        Header: 'Name',
-        accessor: 'Name',
-      },
-      {
-        Header: 'Current Rank',
-        accessor: 'Current Rank',
-      },
-      {
-        Header: 'Total Spent',
-        accessor: 'Total Spent',
-      },
-      {
-        Header: 'Last Calculation Date',
-        accessor: 'Last Calculation Date',
-      },
-    ],
-    []
-  )
-
-  const {
-    getTableProps,
-    getTableBodyProps,
-    headerGroups,
-    rows,
-    prepareRow,
-  } = useTable({ columns, data })
+  const columns = [
+    {
+      Header: 'Customer ID',
+      accessor: 'Customer ID',
+    },
+    {
+      Header: 'Name',
+      accessor: 'Name',
+    },
+    {
+      Header: 'Current Rank',
+      accessor: 'Current Rank',
+    },
+    {
+      Header: 'Total Spent',
+      accessor: 'Total Spent',
+    },
+    {
+      Header: 'Last Calculation Date',
+      accessor: 'Last Calculation Date',
+    },
+  ]
 
   return (
     <>
       <h1>customer info</h1>
-      <table {...getTableProps()} style={{margin: '0 auto'}}>
-        <thead>
-          {headerGroups.map(headerGroup => (
-            <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map(column => (
-                <th {...column.getHeaderProps()}>{column.render('Header')}</th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody {...getTableBodyProps()}>
-          {rows.map(row => {
-            prepareRow(row)
-            return (
-              <tr {...row.getRowProps()}>
-                {row.cells.map(cell => (
-                  <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
-                ))}
-              </tr>
-            )
-          })}
-        </tbody>
-      </table>
+      <AwesomeTable columns={columns} data={data} />
       <Link to="/">Back to home</Link>
     </>
   )
