@@ -1,6 +1,9 @@
-# nodejs-starter-template
+# worksample-ICHIGO
 
-this is template for Node.js app
+this is worksample for ICHIGO
+
+This application is published at the following URL.
+<https://meadow-cut-orchestra.glitch.me/>
 
 ## How to setup
 
@@ -29,4 +32,16 @@ npm run build
 
 ```shell
 npm run start
+```
+
+## How to register customer
+
+```shell
+curl -X POST -H "Content-Type: application/json" -d '{"name":"peter.parker"}' localhost:3000/customers
+```
+
+## How to order
+
+```shell
+curl -X POST -H "Content-Type: application/json" -d '{"customerId":"1000","customerName":"peter.parker","orderId":"ABC1234","totalInCents":10,"date":"2022-01-01T00:00:00.000Z"}' localhost:3000/orders
 ```
