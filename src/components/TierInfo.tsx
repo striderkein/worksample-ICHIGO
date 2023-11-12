@@ -4,7 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import '../styles/style.css';
 import AwesomeTable from './AwesomeTable';
 
-export default function CustomerInfo() {
+export default function TierInfo() {
   const [tierInfo, setTierInfo] = useState({
     name: '',
     currentRank: '',
@@ -20,7 +20,7 @@ export default function CustomerInfo() {
 
   useEffect(() => {
     const fetchCustomers = async () => {
-      const response = await fetch(`/customers/${ customerId }`, {
+      const response = await fetch(`/customers/${ customerId }/tier-status`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
@@ -91,7 +91,7 @@ export default function CustomerInfo() {
 
   return (
     <>
-      <h1>customer info</h1>
+      <h1>Tier info</h1>
       <AwesomeTable columns={columns} data={data} />
       <Link to="/">Back to home</Link>
     </>
