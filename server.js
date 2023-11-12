@@ -67,7 +67,7 @@ app.post('/orders', (req, res) => {
 // });
 
 // 顧客情報を返すエンドポイント
-app.get('/customers/:id/tier-status', (req, res) => {
+app.get('/customers/:id', (req, res) => {
   const customerId = req.params.id;
   console.log(`customerId: ${ customerId }`)
 
@@ -83,6 +83,8 @@ app.get('/customers/:id/tier-status', (req, res) => {
 
   // 2. ランク計算の開始日（前年の１月１日）を取得する
   const firstDayOfLastYear = dayjs().subtract(1, 'year').startOf('year').format('YYYY-MM-DD');
+  // const lastYearOrders = db.prepare("SELECT * FROM orders WHERE customerId = ? AND date >= ?");
+  // const lastYearOrders = db.prepare("SELECT * FROM customers c, orders o WHERE c.customerId = ? AND o.date >= ?");
   const lastYearOrders = db.prepare("SELECT * FROM customers c INNER JOIN orders o WHERE c.customerId = ? AND c.customerId = o.customerId AND o.date >= ?");
   lastYearOrders.all([customerId, firstDayOfLastYear], (err, rows) => {
     console.log(`rows: ${ JSON.stringify(rows) }`)

@@ -20,10 +20,10 @@ export default function UserHome() {
       <br />
       <button
         type="button"
-        id="check_tier_status"
+        id="check_customer"
         onClick={checkCustomer}
         disabled={customerId == null || customerId.length === 0}
-      >check_tier_status</button>
+      >check_customer</button>
       <br />
       <button
         type="button"

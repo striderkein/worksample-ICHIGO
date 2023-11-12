@@ -1,7 +1,7 @@
 import './styles/style.css';
 import { Routes, Route, Link } from 'react-router-dom';
 import UserHome from './components/UserHome';
-import TierInfo from './components/TierInfo';
+import CustomerInfo from './components/CustomerInfo';
 import OrderInfo from './components/OrderInfo';
 
 export default function App() {
@@ -11,7 +11,7 @@ export default function App() {
       {/* <br /> */}
       <Routes>
         <Route path="/" element={<UserHome />} />
-        <Route path="/customer-info/:customerId" element={<TierInfo />} />
+        <Route path="/customer-info/:customerId" element={<CustomerInfo />} />
         <Route path="/orders/:customerId" element={<OrderInfo />} />
       </Routes>
     </div>
