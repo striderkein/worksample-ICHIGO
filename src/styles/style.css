@@ -85,3 +85,9 @@ th {
 th span {
   margin-left: 10px;
 }
+
+.progress-bar {
+  padding: 30px 10px;
+  display: flex;
+  justify-content: center;
+}
