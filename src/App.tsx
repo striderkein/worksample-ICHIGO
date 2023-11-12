@@ -1,16 +1,18 @@
 import './styles/style.css';
 import { Routes, Route, Link } from 'react-router-dom';
-import SomeForm from './components/SomeForm';
-import ErrorPage from './components/ErrorPage';
-import SuccessPage from './components/SuccessPage';
+import UserHome from './components/UserHome';
+import CustomerInfo from './components/CustomerInfo';
+import OrderInfo from './components/OrderInfo';
 
 export default function App() {
   return (
     <div className="App">
+      {/* <Link to="/">HOME</Link> */}
+      {/* <br /> */}
       <Routes>
-        <Route path="/" element={<SomeForm />} />
-        <Route path="/success" element={<SuccessPage />} />
-        <Route path="/error" element={<ErrorPage />} />
+        <Route path="/" element={<UserHome />} />
+        <Route path="/customer-info/:customerId" element={<CustomerInfo />} />
+        <Route path="/orders/:customerId" element={<OrderInfo />} />
       </Routes>
     </div>
   );
