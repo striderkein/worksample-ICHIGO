@@ -10,6 +10,11 @@ function recalculateRanks(db) {
   });
 }
 
+function randomId() {
+  return Math.random().toString(32).substring(2);
+}
+
 module.exports = {
   recalculateRanks,
+  randomId,
 };
