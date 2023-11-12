@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 
 import '../styles/style.css';
 import AwesomeTable from './AwesomeTable';
+import ProgressBar from './ProgressBar';
 
 export default function CustomerInfo() {
   const [customer, setCustomer] = useState({
@@ -92,6 +93,7 @@ export default function CustomerInfo() {
   return (
     <>
       <h1>customer info</h1>
+      <ProgressBar totalSpent={customer.totalSpent} requiredForNextRank={customer.requiredForNextRank} />
       <AwesomeTable columns={columns} data={data} />
       <Link to="/">Back to home</Link>
     </>
