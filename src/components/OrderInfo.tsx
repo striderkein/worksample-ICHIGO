@@ -53,7 +53,7 @@ export default function OrderInfo() {
   return (
     <>
       <h1>order info</h1>
-      <AwesomeTable columns={columns} data={data} />
+      <AwesomeTable columns={columns} data={data} withPagination={true} />
       <Link to="/">Back to home</Link>
     </>
   )
