@@ -5,7 +5,7 @@ import '../styles/style.css';
 import AwesomeTable from './AwesomeTable';
 
 export default function CustomerInfo() {
-  const [customer, setCustomer] = useState({
+  const [tierInfo, setTierInfo] = useState({
     name: '',
     currentRank: '',
     totalSpent: 0,
@@ -28,21 +28,21 @@ export default function CustomerInfo() {
       });
       const responseData = await response.json()
       console.log(responseData)
-      setCustomer(responseData)
+      setTierInfo(responseData)
     }
     fetchCustomers()
-  }, [setCustomer, customerId])
+  }, [setTierInfo, customerId])
 
   const data = [
     {
-      'Name': customer.name,
-      'Current Rank': customer.currentRank,
-      'Calculation Start Date': customer.firstDayOfLastYear,
-      'Total Spent': customer.totalSpent,
-      'Required For Next Rank': customer.requiredForNextRank,
-      'Downgrade Rank': customer.downgradeRank,
-      'Downgrade Date': customer.downgradeDate,
-      'Downgrade Threshold Diff': customer.downgradeThresholdDiff,
+      'Name': tierInfo.name,
+      'Current Rank': tierInfo.currentRank,
+      'Calculation Start Date': tierInfo.firstDayOfLastYear,
+      'Total Spent': tierInfo.totalSpent,
+      'Required For Next Rank': tierInfo.requiredForNextRank,
+      'Downgrade Rank': tierInfo.downgradeRank,
+      'Downgrade Date': tierInfo.downgradeDate,
+      'Downgrade Threshold Diff': tierInfo.downgradeThresholdDiff,
     },
   ]
 
