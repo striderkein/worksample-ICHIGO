@@ -1,5 +1,3 @@
-import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
 import { useTable, usePagination } from 'react-table';
 
 import '../styles/style.css';
