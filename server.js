@@ -8,6 +8,8 @@ const morgan = require('morgan');
 const app = express();
 const path = require('path')
 const dayjs = require('dayjs')
+const cron = require('node-cron');
+const { recalculateRanks } = require('./utils');
 // const fetch = require('node-fetch');
 
 app.use(express.json());
@@ -56,15 +58,6 @@ app.post('/orders', (req, res) => {
 
   return res.json({ message: "Order completed!" });
 });
-
-// TODO: 毎年末にランクを再計算する cron ジョブ的なやつ
-// // recalculateRanks.js
-// const sqlite3 = require('sqlite3').verbose();
-// const db = new sqlite3.Database('./database.db');
-//
-// db.serialize(() => {
-//   // ここでランクを再計算するロジックを書く
-// });
 
 // 顧客情報を返すエンドポイント
 app.get('/customers/:id', (req, res) => {
@@ -147,6 +140,13 @@ app.get('/orders/:customerId', (req, res) => {
     }
     res.json(rows);
   });
+});
+
+const perYear = '0 0 31 12 *';
+// 毎年12月31日にランクを再計算する
+cron.schedule(perYear, () => {
+  console.log("re-calculate ranks...");
+  recalculateRanks();
 });
 
 app.use(express.static(path.join(__dirname, "dist")));
