@@ -3,33 +3,33 @@ import { useNavigate } from 'react-router-dom';
 
 export default function UserHome() {
   const navigate = useNavigate();
-  const [customerId, setCustomerId] = useState('')
+  const [customerName, setCustomerName] = useState('')
 
   const checkCustomer = () => {
-    navigate(`/customer-info/${customerId}`)
+    navigate(`/customer-info/${customerName}`)
   }
 
   const checkOrder = () => {
-    navigate(`/orders/${customerId}`)
+    navigate(`/orders/${customerName}`)
   }
 
   return (
     <>
       <p>who are you?</p>
-      <input name="customerid" placeholder="1000" onChange={(event) => setCustomerId(event.target.value)} />
+      <input name="customername" placeholder="peter.parker" onChange={(event) => setCustomerName(event.target.value)} />
       <br />
       <button
         type="button"
         id="check_customer"
         onClick={checkCustomer}
-        disabled={customerId == null || customerId.length === 0}
+        disabled={customerName == null || customerName.length === 0}
       >check_customer</button>
       <br />
       <button
         type="button"
         id="check_order"
         onClick={checkOrder}
-        disabled={customerId == null || customerId.length === 0}
+        disabled={customerName == null || customerName.length === 0}
       >check_order</button>
     </>
   )

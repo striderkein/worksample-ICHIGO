@@ -19,9 +19,10 @@ app.use(morgan());
 // DB初期設定
 const db = new sqlite3.Database('./database.db');
 
+// 簡便のため、name を customerId として扱う
 db.serialize(() => {
   db.run("CREATE TABLE IF NOT EXISTS orders (customerId TEXT, orderId TEXT, totalInCents INT, date TEXT)");
-  db.run("CREATE TABLE IF NOT EXISTS customers (customerId TEXT PRIMARY KEY, name TEXT, currentRank TEXT, lastCalculationDate TEXT, totalSpent INT)");
+  db.run("CREATE TABLE IF NOT EXISTS customers (name TEXT PRIMARY KEY, currentRank TEXT, lastCalculationDate TEXT, totalSpent INT)");
 });
 
 // 顧客を登録するエンドポイント
