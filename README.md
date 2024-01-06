@@ -1,5 +1,7 @@
 # worksample-ICHIGO
 
+**NOTE:THIS REPOSITORY NO LONGER UPDATE**
+
 this is worksample for ICHIGO
 
 This application is published at the following URL.
